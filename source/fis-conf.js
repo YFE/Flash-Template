@@ -3,6 +3,7 @@ fis.set('project.ignore', [
     'flash/**',
     'assets/css/reset.styl',
     'assets/css/layout.styl',
+    'assets/css/weui.styl',
     'fis-conf.js',
     '.DS_Store'
 ]);
@@ -31,6 +32,9 @@ fis.match('assets/js/libs/jquery.min.js', {
     packOrder: -100
 });
 fis.match('assets/js/libs/jweixin-1.0.0.js', {
+    packOrder: -90
+});
+fis.match('assets/js/libs/weui.js', {
     packOrder: -90
 });
 
