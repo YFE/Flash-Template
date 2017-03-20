@@ -63,3 +63,12 @@ gm.wxData
 gm.loadImg()
 gm.fire(fn)
 ```
+
+##开发流程
+- clone 模板
+- 把fla放进 /source/flash 里
+- 设置好fla属性，输出
+- 修改build.xml里的输出位置
+- 进入到相应目录，运行 ant
+- 进入到 /source ，运行 fis3 release dev -d -w 进行调测
+
