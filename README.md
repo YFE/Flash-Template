@@ -24,7 +24,7 @@ fis3 release dev -d -w
 
 ## 目录结构
 
-- /app/
+ - /app/
     - config.php `活动配置`
 - /source/ `源素材文件`
     - /assets/ `静态资源`
@@ -41,3 +41,19 @@ fis3 release dev -d -w
     - /flash/ `放置flash源文件`
     - fis-conf.js `fis3配置文件`
 - index.php `入口`
+
+## 已引进可以直接使用的库
+jQuery 3.2
+jweixin 1.0 微信jssdk
+weui.css
+> https://github.com/weui/weui
+
+weui.js
+> https://github.com/weui/weui.js/blob/master/docs/README.md
+
+gm.js
+目前主要用于监测部署以及微信分享设置，可前往源码一览。
+- gm.tracker.[page/event/link]()
+- gm.wxData
+- gm.loadImg()
+- gm.fire(fn);

@@ -68,6 +68,7 @@ define(function(require, exports, module) {
             }
             if( result.sceneId == result.sceneTotal ){
                 myapp.loadComplete();
+                gm.load();
             }
         },__cdnurl+"dist/");
     });
