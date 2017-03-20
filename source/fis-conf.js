@@ -54,9 +54,9 @@ fis.match('*.styl', {
 });
 
 //输出 test 目录
-//fis3 release qa -d
-//fis3 release qa -d -w 如在后面再加上-w 为实时检测变化
-fis.media('qa').match('**', {
+//fis3 release dev -d
+//fis3 release dev -d -w 如在后面再加上-w 为实时检测变化
+fis.media('dev').match('**', {
     deploy: [
         fis.plugin('skip-packed'),
         fis.plugin('local-deliver', {

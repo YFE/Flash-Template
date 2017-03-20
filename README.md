@@ -4,8 +4,8 @@
 
 ## 使用步骤
 
-安装FIS3 
- 
+安装FIS3
+
 ```
 npm install -g fis3
 ```
@@ -23,22 +23,21 @@ fis3 release dev -d -w
 
 
 ## 目录结构
-```
-/app/
-    - config.php 活动配置
-/source/ 源素材文件
-    - /assets/ 静态资源
-        - /css/ 以下文件在输出时会编译stylue并合并压缩为 style.css
-            - layout.styl 如需另写HTML，在此写相应CSS
-            - reset.styl/weui.styl 引用样式
-            - style.styl css入口及输出文件
+
+- /app/
+    - config.php `活动配置`
+- /source/ `源素材文件`
+    - /assets/ `静态资源`
+        - /css/  `以下文件在输出时会合并压缩为 style.css`
+            - layout.styl `如需另写HTML，在此写相应CSS`
+            - reset.styl/weui.styl `引用样式`
+            - style.styl css `入口及输出文件`
         - /images/
-            - share.jpg 分享小图
+            - share.jpg `分享小图`
         - /js/
-            - libs/*.js 各种库文件 在输出时会合并为base.js
-            - app.js 主程序文件
-    - /dist/ flash输出后目标目录
-    - /flash/ 放置flash源文件
-    - fis-conf.js fis3配置文件
-index.php 入口
-```
+            - libs/\*.js `各种库文件 在输出时会合并为base.js`
+            - app.js `主程序文件`
+    - /dist/   `flash输出后目标目录`
+    - /flash/ `放置flash源文件`
+    - fis-conf.js `fis3配置文件`
+- index.php `入口`
