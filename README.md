@@ -56,7 +56,10 @@ weui.js
 gm.js
 
 目前主要用于监测部署以及微信分享设置，可前往源码一览。
-- gm.tracker.[page/event/link]()
-- gm.wxData
-- gm.loadImg()
-- gm.fire(fn);
+
+```javascript
+gm.tracker.[page/event/link]()
+gm.wxData
+gm.loadImg()
+gm.fire(fn)
+```
