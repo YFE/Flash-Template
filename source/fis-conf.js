@@ -2,7 +2,6 @@
 fis.set('project.ignore', [
     'flash/**',
     'assets/css/reset.styl',
-    'assets/css/layout.styl',
     'assets/css/weui.styl',
     'fis-conf.js',
     '.DS_Store'
@@ -51,6 +50,10 @@ fis.match('*.styl', {
     parser: 'stylus',
     rExt: '.css',
     optimizer: fis.plugin('clean-css')
+});
+
+fis.match('*.css', {
+    isCssLike : false
 });
 
 //输出 test 目录

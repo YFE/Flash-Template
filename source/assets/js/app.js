@@ -75,13 +75,13 @@ define(function(require, exports, module) {
 
 	var MyApp = function(){}
 	MyApp.prototype = {
-		page : {},
         loadProcess : function(_per){
             console.log(_per);
         },
         loadComplete : function(){
             this.init();
         },
+		page : {},
 		init : function(){
 			var self = this;
 		}
