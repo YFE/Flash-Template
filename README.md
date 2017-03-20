@@ -44,7 +44,9 @@ fis3 release dev -d -w
 
 ## 已引进可以直接使用的库
 jQuery 3.2
+
 jweixin 1.0 微信jssdk
+
 weui.css
 > https://github.com/weui/weui
 
@@ -52,6 +54,7 @@ weui.js
 > https://github.com/weui/weui.js/blob/master/docs/README.md
 
 gm.js
+
 目前主要用于监测部署以及微信分享设置，可前往源码一览。
 - gm.tracker.[page/event/link]()
 - gm.wxData
