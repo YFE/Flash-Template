@@ -23,7 +23,7 @@
 	<meta itemprop="image" content="<?=$wxData['imgUrl']?>" />
 	<meta name="description" itemprop="description" content="<?=$wxData['desc']?>" />
 	<title><?=$websiteTitle?></title>
-	<meta name="viewport" content="width=device,target-densitydpi=device-dpi,maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device,maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css<?=$version?>">
    	<script src="<?=$cdnUrl?>assets/js/libs/base.js<?=$version?>"></script>
    	<script>
