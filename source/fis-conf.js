@@ -49,6 +49,7 @@ fis.match('assets/images/*.png', {
 fis.match('*.styl', {
     parser: 'stylus',
     rExt: '.css',
+    isCssLike : false,
     optimizer: fis.plugin('clean-css')
 });
 
