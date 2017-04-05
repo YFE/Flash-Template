@@ -60,13 +60,20 @@ define(function(require, exports, module) {
 			myapp.loadProcess(per);
         },function(result){
             if( result.sceneId == 1 ){
-    			var mcLoading = myapp.page['cloading'] = getFlaClass('cloading');
-                myapp.loadProcess = function(_per){
-                    mcLoading.loadNum.text = _per +"%";
+    			myapp.page['cloading'] = getFlaClass('cloading');
+                var mcLoading = myapp.page['cloading'].loadBox;
+                mcLoading.gotoAndPlay('in');
+                mcLoading.ender = function(){
+                    mcLoading.visible = false;
                 }
-                stage.addChild(mcLoading);
+                myapp.loadProcess = function(_per){
+                    mcLoading.loadText.loadNum.text = _per +"%";
+                }
+                stage.addChild(myapp.page['cloading']);
             }
             if( result.sceneId == result.sceneTotal ){
+                // myapp.page['cloading'].container.addChild(myapp.page['flaName']);
+                myapp.page['cloading'].loadBox.gotoAndPlay('out');
                 myapp.loadComplete();
                 gm.load();
             }
