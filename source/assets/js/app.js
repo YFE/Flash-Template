@@ -72,6 +72,7 @@ define(function(require, exports, module) {
                 stage.addChild(myapp.page['cloading']);
             }
             if( result.sceneId == result.sceneTotal ){
+    			// myapp.page['flaName'] = getFlaClass('flaName');
                 // myapp.page['cloading'].container.addChild(myapp.page['flaName']);
                 myapp.page['cloading'].loadBox.gotoAndPlay('out');
                 myapp.loadComplete();
