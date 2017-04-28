@@ -3,6 +3,9 @@ fis.set('project.ignore', [
     'flash/**',
     'assets/css/reset.styl',
     'assets/css/weui.styl',
+    'dist/libs/**',
+    'dist/src/Main.js',
+    'dist/index.html',
     'fis-conf.js',
     '.DS_Store'
 ]);
