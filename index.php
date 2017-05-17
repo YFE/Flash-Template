@@ -59,8 +59,8 @@
 <div class="hide">
 	<img src="<?=$wxData['imgUrl']?><?=$version?>" alt="">
 </div>
-<div class="container">
-    <div id="app"></div>
+<div id="app" class="container">
+    
 </div>
 <script>
 	seajs.use("app",function(app){
