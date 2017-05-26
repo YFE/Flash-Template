@@ -3,6 +3,7 @@ fis.set('project.ignore', [
     'flash/**',
     'assets/css/reset.styl',
     'assets/css/weui.styl',
+    'assets/css/font.styl',
     'dist/libs/**',
     'dist/src/Main.js',
     'dist/index.html',

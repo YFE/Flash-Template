@@ -62,6 +62,16 @@ define(function(require, exports, module) {
             if( result.sceneId == 1 ){
     			myapp.page['cloading'] = getFlaClass('cloading');
                 var mcLoading = myapp.page['cloading'].loadBox;
+
+                //font chathuralight
+                mcLoading.loadText.loadNum.font = 'chathuralight';
+                mcLoading.loadText.loadNum.y = -20;
+                mcLoading.loadText.loadNum.size = 50;
+                mcLoading.loadText.loadNum.lineHeight = mcLoading.loadText.loadNum.size;
+
+                //font handlee
+                // mcLoading.loadText.loadNum.font = 'handlee';
+
                 mcLoading.gotoAndPlay('in');
                 mcLoading.ender = function(){
                     mcLoading.visible = false;
@@ -72,9 +82,10 @@ define(function(require, exports, module) {
                 stage.addChild(myapp.page['cloading']);
             }
             if( result.sceneId == result.sceneTotal ){
+                mcLoading.loadText.loadNum.text = 100 +"%";
     			// myapp.page['flaName'] = getFlaClass('flaName');
                 // myapp.page['cloading'].container.addChild(myapp.page['flaName']);
-                myapp.page['cloading'].loadBox.gotoAndPlay('out');
+                // myapp.page['cloading'].loadBox.gotoAndPlay('out');
                 myapp.loadComplete();
                 gm.load();
             }
