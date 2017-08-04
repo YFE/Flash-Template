@@ -82,7 +82,7 @@ define(function(require, exports, module) {
                 stage.addChild(myapp.page['cloading']);
             }
             if( result.sceneId == result.sceneTotal ){
-                mcLoading.loadText.loadNum.text = 100 +"%";
+                myapp.page['cloading'].loadBox.loadText.loadNum.text = 100 +"%";
     			// myapp.page['flaName'] = getFlaClass('flaName');
                 // myapp.page['cloading'].container.addChild(myapp.page['flaName']);
                 // myapp.page['cloading'].loadBox.gotoAndPlay('out');
@@ -95,7 +95,6 @@ define(function(require, exports, module) {
 	var MyApp = function(){}
 	MyApp.prototype = {
         loadProcess : function(_per){
-            console.log(_per);
         },
         loadComplete : function(){
             this.init();
