@@ -86,6 +86,52 @@ var gm = gm || {};
 
     gm.loadImg = loadImg;
 }();
++ function() {
+    function list(_listBox) {
+        var $self = $(_listBox);
+        return animate($self.find('[data-animation]'), $self);
+    }
+
+    function show(_mc) {
+        var $self = $(_mc);
+        return animate($self);
+    }
+
+    function animate($element, $self) {
+        $element.css({
+            '-webkit-animation': 'none',
+            'display': 'none'
+        });
+
+        $element.each(function(index, element) {
+            var $element = $(element),
+                $animation = $element.data(),
+                $name = $animation.animation,
+                $duration = $animation.duration || 1000,
+                $ease = $animation.ease || 'ease',
+                $delay = $animation.delay || 0,
+                $count = $animation.count ? ($animation.count =="infinite" ? "infinite" : parseInt($animation.count)) : 1;
+            $element.css({
+                'display': 'block',
+                '-webkit-animation-name': $name,
+                '-webkit-animation-duration': $duration + 'ms',
+                '-webkit-animation-timing-function': 'ease',
+                '-webkit-animation-timing-function': $ease,
+                '-webkit-animation-delay': $delay + 'ms',
+                '-webkit-animation-iteration-count': $count,
+                'animation-iteration-count': $count,
+                '-webkit-animation-fill-mode': 'both'
+            });
+        });
+
+        return $self || $element;
+    }
+
+    gm.animate =  {
+        list: list,
+        show: show
+    }
+}();
 
 ;/*!/src/tracker.js*/
 + function() {
