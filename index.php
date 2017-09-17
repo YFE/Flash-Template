@@ -36,6 +36,7 @@
         var F2xExtend = __extends || {};
 		var __version = "<?=$version?>";
 		var	__cdnurl = "<?=$cdnUrl?>";
+        var __mediaurl = "<?=$mediaUrl?>";
 		var	__defaultWxData = {
 			imgUrl : "<?=$wxData['imgUrl']?>",
 			link : "<?=$wxData['link']?>",
@@ -49,6 +50,10 @@
 	    	$(document).on("touchmove", function(e) {
 	    		e.preventDefault();
 	    	});
+	    	$("img,video").on("touchmove", function(e) {
+	    		e.preventDefault();
+	    		e.stopPropagation();
+	    	});
 	    	$(".scroller").on("touchmove", function(e) {
 	    		e.stopPropagation();
 	    	});
@@ -60,7 +65,7 @@
 	<img src="<?=$wxData['imgUrl']?><?=$version?>" alt="">
 </div>
 <div id="app" class="container">
-    
+
 </div>
 <script>
 	seajs.use("app",function(app){

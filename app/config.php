@@ -7,6 +7,9 @@
 
     // CDN静态地址设置
     $cdnUrl = "./release/test/";
+
+    // 视频文件地址设置
+    $mediaUrl = "./";
     // 文件版本号，用于未设置CDN时刷新资源使用
 	$version = "";
 
