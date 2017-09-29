@@ -5,20 +5,16 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
 	<meta name="format-detection"content="telephone=no, email=no" />
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="HandheldFriendly" content="true">
-	<meta name="MobileOptimized" content="640">
 	<meta name="screen-orientation" content="portrait">
 	<meta name="x5-orientation" content="portrait">
 	<meta name="full-screen" content="yes">
 	<meta name="x5-fullscreen" content="true">
 	<meta name="browsermode" content="application">
 	<meta name="x5-page-mode" content="app">
-	<meta name="msapplication-tap-highlight" content="no">
 	<meta itemprop="name" content="<?=$wxData['title']?>"/>
 	<meta itemprop="image" content="<?=$wxData['imgUrl']?>" />
 	<meta name="description" itemprop="description" content="<?=$wxData['desc']?>" />

@@ -237,3 +237,118 @@ var gm = gm || {};
 
     gm.wxData = window.wxData = wxData;
 }();
+
+;/*!*/
++ function() {
+    var lastTime = 0;
+    var vendors = ['webkit'];
+    if( !window.requestAnimationFrame ){
+        window.requestAnimationFrame = window['webkitRequestAnimationFrame'];
+        window.cancelAnimationFrame = window['webkitCancelAnimationFrame'] || window['webkitCancelRequestAnimationFrame'];
+    }
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+            var id = window.setTimeout(function() {
+                callback(currTime + timeToCall);
+            }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+    }
+    gm.raf = window.requestAnimationFrame;
+    gm.ccraf = window.cancelAnimationFrame;
+}();
+
+;
++ function(){
+    var eventManager = function() {
+        if (!(this instanceof eventManager)) { return new eventManager(); }
+        var self = this,
+            keys = function (dict) {
+                var keyList = [];
+                for (var i in dict) {
+                    if (dict.hasOwnProperty(i)) { keyList.push(i); }
+                }
+                return keyList;
+            };
+        self._events = {};
+        self.on = function(events, callback, context, times) {
+            events.split(/\s+/).forEach(function(event) {
+                var callList = self._events[event],
+                    callObj = {
+                        callback: callback,
+                        context: context,
+                        times: times
+                    };
+                if (!callList) {
+                    callList = self._events[event] = [];
+                }
+                callList.push(callObj);
+            });
+            return self;
+        }
+        self.off = function(events, callback, context) {
+            var eventList, i, n;
+            if (!arguments.length) {
+                self._events = {};
+            } else {
+                eventList = events ? events.split(/\s+/) : keys(self._events);
+                for (i in eventList) {
+                    var event = eventList[i],
+                        callList = self._events[event];
+                    if (callList) {
+                        var newList = [];
+                        for (var n in callList) {
+                            if (callback) {
+                                 if (callList[n].callback.toString() == callback.toString()) {
+                                    if (context && callList[n].context != context) {
+                                        newList.push(callList[n]);
+                                    } else if (context === null && callList[n].context) {
+                                        newList.push(callList[n]);
+                                    }
+                                 } else {
+                                    newList.push(callList[n]);
+                                 }
+                            } else if (context && callList[n].context != context) {
+                                newList.push(callList[n]);
+                            }
+                        }
+                        self._events[event] = newList;
+                    }
+                }
+            }
+            return self;
+        }
+        self.once = function(events, callback, context) {
+            self.on(events, callback, context, 1);
+            return self;
+        }
+        self.trigger = function(events) {
+            var args = Array.prototype.slice.call(arguments, 1);
+            events.split(/\s+/).forEach(function(event) {
+                var callList = self._events[event];
+                if (callList) {
+                    callList.forEach(function(callObj) {
+                        if (callObj.times) {
+                            callObj.times -= 1;
+                            if (callObj.times == 0) {
+                                self.off(event, callObj.callback, callObj.context);
+                            }
+                        }
+                        callObj.callback.apply(callObj.context || this, args);
+                    });
+                }
+            });
+            return self;
+        }
+    }
+
+    gm.esm = eventManager;
+}();
