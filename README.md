@@ -43,14 +43,14 @@ fis3 release dev -d -w
 - index.php `入口`
 
 ## 已引进可以直接使用的库
-jQuery 3.2
+jQuery 3.2.1
 
-jweixin 1.0 微信jssdk
+jweixin 1.2.0 微信jssdk
 
-weui.css
+weui.css 1.1.2
 > https://github.com/weui/weui
 
-weui.js
+weui.js 1.1.2
 > https://github.com/weui/weui.js/blob/master/docs/README.md
 
 gm.js
@@ -61,7 +61,6 @@ gm.js
 gm.tracker.[page/event/link]()
 gm.wxData
 gm.loadImg()
-gm.fire(fn)
 ```
 
 ## 开发流程

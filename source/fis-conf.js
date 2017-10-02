@@ -40,6 +40,9 @@ fis.match('assets/js/libs/jweixin-1.0.0.js', {
 fis.match('assets/js/libs/weui.js', {
     packOrder: -90
 });
+fis.match('assets/js/libs/gm.js', {
+    packOrder: -80
+});
 
 // HTML 图片文件夹下 PNG压缩
 fis.match('assets/images/*.png', {

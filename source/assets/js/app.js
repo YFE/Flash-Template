@@ -1,7 +1,63 @@
-define(function(require, exports, module) {
+gm.define(function(require, exports, module) {
+    annie.debug = false;
+    var stage=new annie.Stage('app',800,1040,24,annie.StageScaleMode.FIXED_HEIGHT,0);
+    stage.addEventListener(annie.Event.INIT_TO_STAGE,function (e) {
+        Flash2x.loadScene(['cloading'],function(per){
+			myapp.loadProcess(per);
+        },function(result){
+            if( result.sceneId == 1 ){
+    			myapp.page['cloading'] = getFlaClass('cloading');
+                var mcLoading = myapp.page['cloading'].loadBox;
+
+                //font chathuralight
+                mcLoading.loadText.loadNum.font = 'chathuralight';
+                mcLoading.loadText.loadNum.y = -20;
+                mcLoading.loadText.loadNum.size = 50;
+                mcLoading.loadText.loadNum.lineHeight = mcLoading.loadText.loadNum.size;
+
+                //font handlee
+                // mcLoading.loadText.loadNum.font = 'handlee';
+
+                mcLoading.gotoAndPlay('in');
+                mcLoading.ender = function(){
+                    mcLoading.visible = false;
+                }
+                myapp.loadProcess = function(_per){
+                    mcLoading.loadText.loadNum.text = _per +"%";
+                }
+                stage.addChild(myapp.page['cloading']);
+            }
+            if( result.sceneId == result.sceneTotal ){
+    			// myapp.page['flaName'] = getFlaClass('flaName');
+                // myapp.page['cloading'].container.addChild(myapp.page['flaName']);
+                // myapp.page['cloading'].loadBox.gotoAndPlay('out');
+                myapp.loadComplete();
+                gm.load();
+            }
+        },__cdnurl+"dist/");
+    });
+
+	var MyApp = function(){}
+	MyApp.prototype = {
+        loadProcess : function(_per){
+        },
+        loadComplete : function(){
+            this.init();
+        },
+		page : {},
+		init : function(){
+			var self = this;
+		}
+	};
+	var myapp = new MyApp;
+
+
 
     function getFlaClass(_name){
-        return new window[_name][_name.replace(/(\w)/,function(v){return v.toUpperCase()})];
+        var _flaClass = window[_name][_name.replace(/(\w)/,function(v){return v.toUpperCase()})];
+        if( window[_name] && _flaClass ){
+            return new window[_name][_name.replace(/(\w)/,function(v){return v.toUpperCase()})];
+        }
     }
 
     function ftouch(_mc, _type, _cb) {
@@ -52,59 +108,6 @@ define(function(require, exports, module) {
 	        _startX = 0;
 	    }, false);
 	}
-
-    annie.debug = false;
-    var stage=new annie.Stage('app',800,1040,24,annie.StageScaleMode.FIXED_HEIGHT,0);
-    stage.addEventListener(annie.Event.INIT_TO_STAGE,function (e) {
-        Flash2x.loadScene(['cloading'],function(per){
-			myapp.loadProcess(per);
-        },function(result){
-            if( result.sceneId == 1 ){
-    			myapp.page['cloading'] = getFlaClass('cloading');
-                var mcLoading = myapp.page['cloading'].loadBox;
-
-                //font chathuralight
-                mcLoading.loadText.loadNum.font = 'chathuralight';
-                mcLoading.loadText.loadNum.y = -20;
-                mcLoading.loadText.loadNum.size = 50;
-                mcLoading.loadText.loadNum.lineHeight = mcLoading.loadText.loadNum.size;
-
-                //font handlee
-                // mcLoading.loadText.loadNum.font = 'handlee';
-
-                mcLoading.gotoAndPlay('in');
-                mcLoading.ender = function(){
-                    mcLoading.visible = false;
-                }
-                myapp.loadProcess = function(_per){
-                    mcLoading.loadText.loadNum.text = _per +"%";
-                }
-                stage.addChild(myapp.page['cloading']);
-            }
-            if( result.sceneId == result.sceneTotal ){
-                myapp.page['cloading'].loadBox.loadText.loadNum.text = 100 +"%";
-    			// myapp.page['flaName'] = getFlaClass('flaName');
-                // myapp.page['cloading'].container.addChild(myapp.page['flaName']);
-                // myapp.page['cloading'].loadBox.gotoAndPlay('out');
-                myapp.loadComplete();
-                gm.load();
-            }
-        },__cdnurl+"dist/");
-    });
-
-	var MyApp = function(){}
-	MyApp.prototype = {
-        loadProcess : function(_per){
-        },
-        loadComplete : function(){
-            this.init();
-        },
-		page : {},
-		init : function(){
-			var self = this;
-		}
-	};
-	var myapp = new MyApp;
 
 	return myapp;
 });

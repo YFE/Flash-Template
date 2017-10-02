@@ -20,17 +20,17 @@
 	<meta name="description" itemprop="description" content="<?=$wxData['desc']?>" />
 	<title><?=$websiteTitle?></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
-	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css<?=$version?>">
-   	<script src="<?=$cdnUrl?>assets/js/libs/base.js<?=$version?>"></script>
+	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css">
+   	<script src="<?=$cdnUrl?>assets/js/plugin/jweixin-1.2.0.js"></script>
+   	<script src="<?=$cdnUrl?>assets/js/libs/base.js"></script>
    	<script>
-		seajs.config({
-			'map': [ [/^(.*\.(?:css|js))(.*)$/i, "$1<?=$version?>"] ],
+		gm.seajs.config({
+			'map': [ [/^(.*\.(?:css|js))(.*)$/i, "$1"] ],
 			"base": '<?=$cdnUrl?>assets/js/',
 		});
 	</script>
 	<script>
         var F2xExtend = __extends || {};
-		var __version = "<?=$version?>";
 		var	__cdnurl = "<?=$cdnUrl?>";
         var __mediaurl = "<?=$mediaUrl?>";
 		var	__defaultWxData = {
@@ -41,30 +41,33 @@
 			singleDesc : "<?=$wxData['singleDesc']?>"
 		};
 		var __currScreen;
-		$.ready(function(){
-	    	FastClick.attach(document.body);
-	    	$(document).on("touchmove", function(e) {
-	    		e.preventDefault();
-	    	});
-	    	$("img,video").on("touchmove", function(e) {
-	    		e.preventDefault();
-	    		e.stopPropagation();
-	    	});
-	    	$(".scroller").on("touchmove", function(e) {
-	    		e.stopPropagation();
-	    	});
-		})
+
+        $(function(){
+            FastClick.attach(document.body);
+            $(document).on("touchmove", function(e) {
+                e.preventDefault();
+            });
+            $("img,video").on("touchmove", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+            $(".scroller").on("touchmove", function(e) {
+                e.stopPropagation();
+            });
+            gm.page.init();
+            gm.wxData.setDefault();
+        })
 	</script>
 </head>
 <body>
 <div class="hide">
-	<img src="<?=$wxData['imgUrl']?><?=$version?>" alt="">
+	<img src="<?=$wxData['imgUrl']?>" alt="">
 </div>
 <div id="app" class="container">
 
 </div>
 <script>
-	seajs.use("app",function(app){
+	gm.seajs.use("app",function(app){
 		wx.ready(function(){
 			wxData.share();
 		});
