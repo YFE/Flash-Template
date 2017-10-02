@@ -54,9 +54,9 @@
             $(".scroller").on("touchmove", function(e) {
                 e.stopPropagation();
             });
-            gm.page.init();
-            gm.wxData.setDefault();
-        })
+        });
+
+        gm.wxData.setDefault();
 	</script>
 </head>
 <body>

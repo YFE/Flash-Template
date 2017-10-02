@@ -34,9 +34,6 @@ fis.match('*.js', {
 fis.match('assets/js/libs/jquery.min.js', {
     packOrder: -100
 });
-fis.match('assets/js/libs/jweixin-1.0.0.js', {
-    packOrder: -90
-});
 fis.match('assets/js/libs/weui.js', {
     packOrder: -90
 });
@@ -45,12 +42,12 @@ fis.match('assets/js/libs/gm.js', {
 });
 
 // HTML 图片文件夹下 PNG压缩
-fis.match('assets/images/*.png', {
-    optimizer: fis.plugin('png-compressor', {
-        type: 'pngquant',
-        quality: [30,50]
-    })
-});
+// fis.match('assets/images/*.png', {
+//     optimizer: fis.plugin('png-compressor', {
+//         type: 'pngquant',
+//         quality: [30,50]
+//     })
+// });
 
 //stylus文件编译
 fis.match('*.styl', {
@@ -79,7 +76,7 @@ fis.media('dev').match('**', {
 // 获取日期版本号
 function getVersion(){
     var _now = new Date();
-    return "" + checkTime(_now.getDate()) + checkTime(_now.getHours()) + checkTime(_now.getMinutes()) + checkTime(_now.getSeconds());
+    return "v" + checkTime(_now.getDate()) + checkTime(_now.getHours()) + checkTime(_now.getMinutes()) + checkTime(_now.getSeconds());
 
     function checkTime(i) {
         if (i < 10) {

@@ -88,7 +88,8 @@
             return self;
         }
     }
-    gm.ems = new eventManager;
+    gm.EM = eventManager;
+    gm.ems = new gm.EM;
 
     gm.loadImg = function(imgUrl, loadComplete, setLoadingInfo, isReturnImgObj) {
         var _imgOBJ = [];
@@ -209,20 +210,20 @@
             if (!gm.wxData.singleDesc) gm.wxData.singleDesc = gm.wxData.desc;
             wx.onMenuShareTimeline({
                 title: wxData.desc,
-                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=timeline",
+                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=shareintimeline",
                 imgUrl: wxData.imgUrl,
                 success: function() {
                     wxData.callback('timeline');
                     gm.tracker.page("share/timeline");
                 },
                 cancel: function() {
-                    gm.tracker.event("share", 'timeline_cancel');
+                    gm.tracker.event("share", 'timeline/cancel');
                 }
             });
             wx.onMenuShareAppMessage({
                 title: wxData.title,
                 desc: wxData.singleDesc,
-                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=appmessage",
+                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=shareinappmessage",
                 imgUrl: wxData.imgUrl,
                 type: '',
                 dataUrl: '',
@@ -231,7 +232,7 @@
                     gm.tracker.page("share/appmessage");
                 },
                 cancel: function() {
-                    gm.tracker.event("share", 'appmessage_cancel');
+                    gm.tracker.event("share", 'appmessage/cancel');
                 }
             });
         },
@@ -256,31 +257,13 @@
             }
         }
     };
-
-    gm.page = {
-        readyList : [],
-        loadList : [],
-        isReady : false,
-        isLoad : false
-    }
-
-    gm.page.init = function() {
-        gm.ems.trigger('ready');
-        gm.page.isReady = true;
-    }
-
-    gm.page.load = function() {
+    gm.isLoadEnd = false;
+    gm.load = function() {
         gm.ems.trigger('load');
-        gm.page.isLoad = true;
+        gm.isLoadEnd = true;
     }
-    gm.page.ready = function(_fn) {
-        if (gm.page.isReady) {
-            return _fn();
-        }
-        gm.ems.on('ready',_fn);
-    };
-    gm.push = function(_fn) {
-        if (gm.page.isLoad) {
+    gm.onload = function(_fn) {
+        if (gm.isLoadEnd) {
             return _fn();
         }
         gm.ems.on('load',_fn);

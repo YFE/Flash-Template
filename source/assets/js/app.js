@@ -13,7 +13,7 @@ gm.define(function(require, exports, module) {
                 mcLoading.loadText.loadNum.font = 'chathuralight';
                 mcLoading.loadText.loadNum.y = -20;
                 mcLoading.loadText.loadNum.size = 50;
-                mcLoading.loadText.loadNum.lineHeight = mcLoading.loadText.loadNum.size;
+                mcLoading.loadText.loadNum.lineHeight = 50;
 
                 //font handlee
                 // mcLoading.loadText.loadNum.font = 'handlee';
