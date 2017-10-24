@@ -42,12 +42,12 @@ fis.match('assets/js/libs/gm.js', {
 });
 
 // HTML 图片文件夹下 PNG压缩
-// fis.match('assets/images/*.png', {
-//     optimizer: fis.plugin('png-compressor', {
-//         type: 'pngquant',
-//         quality: [30,50]
-//     })
-// });
+fis.match('assets/images/*.png', {
+    optimizer: fis.plugin('png-compressor', {
+        type: 'pngquant',
+        quality: [30,50]
+    })
+});
 
 //stylus文件编译
 fis.match('*.styl', {
