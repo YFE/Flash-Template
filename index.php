@@ -30,7 +30,11 @@
 		});
 	</script>
 	<script>
-        var F2xExtend = __extends || {};
+        var F2xExtend = function () {
+			var _extend = {}; 
+			try { if (__extends){ _extend = __extends; } } catch (error) { console.log(error) }
+			return _extend;
+		}();
 		var	__cdnurl = "<?=$cdnUrl?>";
         var __mediaurl = "<?=$mediaUrl?>";
 		var	__defaultWxData = {
@@ -40,7 +44,6 @@
 			title : "<?=$wxData['title']?>",
 			singleDesc : "<?=$wxData['singleDesc']?>"
 		};
-		var __currScreen;
 
         $(function(){
             FastClick.attach(document.body);

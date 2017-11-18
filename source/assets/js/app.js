@@ -1,6 +1,9 @@
 gm.define(function(require, exports, module) {
-    annie.debug = false;
-    var stage=new annie.Stage('app',800,1040,24,annie.StageScaleMode.FIXED_HEIGHT,0);
+	annie.debug = false;
+	//对iPHoneX的简单兼容
+    var _scaleHeight = window.innerHeight / (window.innerWidth / 640);
+    var _designHeight = _scaleHeight >= 1040 ? _scaleHeight : 1040;
+    var stage = new annie.Stage('app', 800, _designHeight, 24, annie.StageScaleMode.FIXED_HEIGHT, 0);
     stage.addEventListener(annie.Event.INIT_TO_STAGE,function (e) {
         Flash2x.loadScene(['cloading'],function(per){
 			myapp.loadProcess(per);
