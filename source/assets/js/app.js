@@ -1,47 +1,54 @@
 gm.define(function(require, exports, module) {
 	annie.debug = false;
 	//对iPHoneX的简单兼容
-    var _scaleHeight = window.innerHeight / (window.innerWidth / 640);
-    var _designHeight = _scaleHeight >= 1040 ? _scaleHeight : 1040;
-    var stage = new annie.Stage('app', 800, _designHeight, 24, annie.StageScaleMode.FIXED_HEIGHT, 0);
-    stage.addEventListener(annie.Event.INIT_TO_STAGE,function (e) {
-        Flash2x.loadScene(['cloading'],function(per){
-			myapp.loadProcess(per);
-        },function(result){
-            if( result.sceneId == 1 ){
-    			myapp.page['cloading'] = getFlaClass('cloading');
-                var mcLoading = myapp.page['cloading'].loadBox;
-
-                //font chathuralight
-                mcLoading.loadText.loadNum.font = 'chathuralight';
-                mcLoading.loadText.loadNum.y = -20;
-                mcLoading.loadText.loadNum.size = 50;
-                mcLoading.loadText.loadNum.lineHeight = 50;
-
-                //font handlee
-                // mcLoading.loadText.loadNum.font = 'handlee';
-
-                mcLoading.gotoAndPlay('in');
-                mcLoading.ender = function(){
-                    mcLoading.visible = false;
-                }
-                myapp.loadProcess = function(_per){
-                    mcLoading.loadText.loadNum.text = _per +"%";
-                }
-                stage.addChild(myapp.page['cloading']);
-            }
-            if( result.sceneId == result.sceneTotal ){
-    			// myapp.page['flaName'] = getFlaClass('flaName');
-                // myapp.page['cloading'].container.addChild(myapp.page['flaName']);
-                // myapp.page['cloading'].loadBox.gotoAndPlay('out');
-                myapp.loadComplete();
-                gm.load();
-            }
-        },__cdnurl+"dist/");
-    });
-
+	window.F2xExtend = function () {
+		var _extend = {};
+		try {
+			if (__extends) { _extend = __extends; }
+		} catch (error) {}
+		return _extend;
+	}();
 	var MyApp = function(){}
 	MyApp.prototype = {
+		loadStart : function(){
+			var self = this;
+			self.stage = new annie.Stage('app', 800, 1040, 24, annie.StageScaleMode.FIXED_HEIGHT, 0);
+			self.stage.addEventListener(annie.Event.INIT_TO_STAGE, function (e) {
+				Flash2x.loadScene(['cloading'], function (per) {
+					self.loadProcess(per);
+				}, function (result) {
+					if (result.sceneId == 1) {
+						self.page['cloading'] = gm.getFlaClass('cloading');
+						var mcLoading = self.page['cloading'].loadBox;
+
+						//font chathuralight
+						// mcLoading.loadText.loadNum.font = 'chathuralight';
+						// mcLoading.loadText.loadNum.y = -20;
+						// mcLoading.loadText.loadNum.size = 50;
+						// mcLoading.loadText.loadNum.lineHeight = 50;
+
+						//font handlee
+						mcLoading.loadText.loadNum.font = 'handlee';
+
+						mcLoading.gotoAndPlay('in');
+						mcLoading.ender = function () {
+							mcLoading.visible = false;
+						}
+						self.loadProcess = function (_per) {
+							mcLoading.loadText.loadNum.text = _per + "%";
+						}
+						self.stage.addChild(self.page['cloading']);
+					}
+					if (result.sceneId == result.sceneTotal) {
+						// self.page['flaName'] = gm.getFlaClass('flaName');
+						// self.page['cloading'].container.addChild(self.page['flaName']);
+						// self.page['cloading'].loadBox.gotoAndPlay('out');
+						self.loadComplete();
+						gm.load();
+					}
+				}, __cdnurl + "dist/");
+			});
+		},
         loadProcess : function(_per){
         },
         loadComplete : function(){
@@ -53,64 +60,6 @@ gm.define(function(require, exports, module) {
 		}
 	};
 	var myapp = new MyApp;
-
-
-
-    function getFlaClass(_name){
-        var _flaClass = window[_name][_name.replace(/(\w)/,function(v){return v.toUpperCase()})];
-        if( window[_name] && _flaClass ){
-            return new window[_name][_name.replace(/(\w)/,function(v){return v.toUpperCase()})];
-        }
-    }
-
-    function ftouch(_mc, _type, _cb) {
-	    var _startX = 0,
-	        _startY = 0,
-	        _endX = 0,
-	        _endY = 0,
-	        _dict = 100;
-	    var isEventMatch = function(_sx, _sy, _ex, _ey) {
-	        if (_sx == 0 && _sy == 0) {
-	            return false;
-	        }
-	        if (_type == "tap") {
-	            if (Math.abs(_ex) < 10 && Math.abs(_ey) < 10) {
-	                return true;
-	            }
-	            return false;
-	        }
-	        if (_type.indexOf("swipe") > -1) {
-	            if (Math.abs(_ex) <= _dict && Math.abs(_ey) <= _dict) {
-	                return false;
-	            }
-	            if (_type == "swipeup") {
-	                return _ey < -_dict && _ey < _ex;
-	            }
-	            if (_type == "swipedown") {
-	                return _ey > _dict && _ey > _ex
-	            }
-	            if (_type == "swipeleft") {
-	                return _ex < -_dict && _ex < _ey
-	            }
-	            if (_type == "swiperight") {
-	                return _ex > _dict && _ex > _ey
-	            }
-	        }
-	    }
-
-	    _mc.addEventListener(annie.MouseEvent.MOUSE_DOWN, function(e) {
-	        _startX = e.stageX;
-	        _startY = e.stageY;
-	    }, false);
-
-	    _mc.addEventListener(annie.MouseEvent.MOUSE_UP, function(e) {
-	        _endX = e.stageX - _startX;
-	        _endY = e.stageY - _startY;
-	        isEventMatch(_startX, _startY, _endX, _endY) && _cb(e);
-	        _startY = 0;
-	        _startX = 0;
-	    }, false);
-	}
 
 	return myapp;
 });

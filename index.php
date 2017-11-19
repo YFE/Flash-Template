@@ -17,10 +17,11 @@
 	<meta name="x5-page-mode" content="app">
 	<meta itemprop="name" content="<?=$wxData['title']?>"/>
 	<meta itemprop="image" content="<?=$wxData['imgUrl']?>" />
-	<meta name="description" itemprop="description" content="<?=$wxData['desc']?>" />
+	<meta itemprop="description" name="description" content="<?=$wxData['desc']?>" />
 	<title><?=$websiteTitle?></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
 	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css">
+	<style> .hide {display:none;} </style>
    	<script src="<?=$cdnUrl?>assets/js/plugin/jweixin-1.2.0.js"></script>
    	<script src="<?=$cdnUrl?>assets/js/libs/base.js"></script>
    	<script>
@@ -28,22 +29,6 @@
 			'map': [ [/^(.*\.(?:css|js))(.*)$/i, "$1"] ],
 			"base": '<?=$cdnUrl?>assets/js/',
 		});
-	</script>
-	<script>
-        var F2xExtend = function () {
-			var _extend = {}; 
-			try { if (__extends){ _extend = __extends; } } catch (error) { console.log(error) }
-			return _extend;
-		}();
-		var	__cdnurl = "<?=$cdnUrl?>";
-        var __mediaurl = "<?=$mediaUrl?>";
-		var	__defaultWxData = {
-			imgUrl : "<?=$wxData['imgUrl']?>",
-			link : "<?=$wxData['link']?>",
-			desc : "<?=$wxData['desc']?>",
-			title : "<?=$wxData['title']?>",
-			singleDesc : "<?=$wxData['singleDesc']?>"
-		};
 
         $(function(){
             FastClick.attach(document.body);
@@ -56,10 +41,26 @@
             });
             $(".scroller").on("touchmove", function(e) {
                 e.stopPropagation();
-            });
-        });
+			});
+			
+			//简单适配全面屏
+			document.querySelector('body').style.backgroundColor = "#000";
+			document.querySelector('#app').style.height = window.innerHeight / (window.innerWidth / 640) >= 1040 ? 1040 / (640 / window.innerWidth) + "px" : "100%";
+		});
+	</script>
+	<script>
+		var	__cdnurl = "<?=$cdnUrl?>";
+        var __mediaurl = "<?=$mediaUrl?>";
 
-        gm.wxData.setDefault();
+		// if wechat
+		var	__defaultWxData = {
+			imgUrl : "<?=$wxData['imgUrl']?>",
+			link : "<?=$wxData['link']?>",
+			desc : "<?=$wxData['desc']?>",
+			title : "<?=$wxData['title']?>",
+			singleDesc : "<?=$wxData['singleDesc']?>"
+		};
+        gm.wxData.setDefault(__defaultWxData);
 	</script>
 </head>
 <body>
@@ -71,6 +72,9 @@
 </div>
 <script>
 	gm.seajs.use("app",function(app){
+		//启动加载
+		app.loadStart();
+		
 		wx.ready(function(){
 			wxData.share();
 		});
