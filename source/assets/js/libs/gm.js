@@ -1,4 +1,4 @@
-; + function(global, undefined) {
+;(function(global, undefined) {
     var gm = global.gm = {
         version: "1.0.1"
     };
@@ -330,4 +330,4 @@
     }
 
 
-}(this);
+}(this));
