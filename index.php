@@ -21,8 +21,10 @@
 	<title><?=$websiteTitle?></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
 	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css">
+	<link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
 	<style> .hide {display:none;} </style>
-   	<script src="<?=$cdnUrl?>assets/js/plugin/jweixin-1.2.0.js"></script>
+   	<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+   	<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
    	<script src="<?=$cdnUrl?>assets/js/libs/base.js"></script>
    	<script>
 		gm.seajs.config({
