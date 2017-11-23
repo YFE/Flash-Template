@@ -5,16 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">
 	<meta name="format-detection"content="telephone=no, email=no" />
-	<meta name="screen-orientation" content="portrait">
-	<meta name="x5-orientation" content="portrait">
-	<meta name="full-screen" content="yes">
-	<meta name="x5-fullscreen" content="true">
-	<meta name="browsermode" content="application">
-	<meta name="x5-page-mode" content="app">
 	<meta itemprop="name" content="<?=$wxData['title']?>"/>
 	<meta itemprop="image" content="<?=$wxData['imgUrl']?>" />
 	<meta itemprop="description" name="description" content="<?=$wxData['desc']?>" />
@@ -23,9 +14,11 @@
 	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css">
 	<link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
 	<style> .hide {display:none;} </style>
-   	<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-   	<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
+   	<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+   	<script src="//res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
    	<script src="<?=$cdnUrl?>assets/js/libs/base.js"></script>
+	<!-- if is flashMaker -->
+	<script src="<?=$cdnUrl?>assets/js/plugin/annieCore.min.js"></script>
    	<script>
 		gm.seajs.config({
 			'map': [ [/^(.*\.(?:css|js))(.*)$/i, "$1"] ],

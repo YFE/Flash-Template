@@ -1,13 +1,5 @@
 gm.define(function(require, exports, module) {
 	annie.debug = false;
-	//对iPHoneX的简单兼容
-	window.F2xExtend = function () {
-		var _extend = {};
-		try {
-			if (__extends) { _extend = __extends; }
-		} catch (error) {}
-		return _extend;
-	}();
 	var MyApp = function(){}
 	MyApp.prototype = {
 		loadStart : function(){
@@ -60,6 +52,16 @@ gm.define(function(require, exports, module) {
 		}
 	};
 	var myapp = new MyApp;
+	
+	window.F2xExtend = function () {
+		var _extend = {};
+		try {
+			if (__extends) {
+				_extend = __extends;
+			}
+		} catch (error) {}
+		return _extend;
+	}();
 
 	return myapp;
 });
