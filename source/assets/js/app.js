@@ -1,5 +1,5 @@
-gm.define(function(require, exports, module) {
-	annie.debug = false;
+; (function (global) {
+	
 	var MyApp = function(){}
 	MyApp.prototype = {
 		loadStart : function(){
@@ -63,5 +63,8 @@ gm.define(function(require, exports, module) {
 		return _extend;
 	}();
 
-	return myapp;
-});
+
+	this.initAPP = function (cb) {
+		cb(myapp);
+	}
+}(this));

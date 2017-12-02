@@ -12,19 +12,15 @@
 	<title><?=$websiteTitle?></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
 	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css">
-	<link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
+	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/weui.min.css">
 	<style> .hide {display:none;} </style>
-   	<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-   	<script src="//res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
+   	<script src="<?=$cdnUrl?>assets/js/plugin/jweixin-1.2.0.js"></script>
+   	<script src="<?=$cdnUrl?>assets/js/plugin/weui.js"></script>
    	<script src="<?=$cdnUrl?>assets/js/libs/base.js"></script>
 	<!-- if is flashMaker -->
 	<script src="<?=$cdnUrl?>assets/js/plugin/annieCore.min.js"></script>
    	<script>
-		gm.seajs.config({
-			'map': [ [/^(.*\.(?:css|js))(.*)$/i, "$1"] ],
-			"base": '<?=$cdnUrl?>assets/js/',
-		});
-
+	   
         $(function(){
             FastClick.attach(document.body);
             $(document).on("touchmove", function(e) {
@@ -65,8 +61,9 @@
 <div id="app" class="container">
 
 </div>
+<script src="<?=$cdnUrl?>assets/js/app.js"></script>
 <script>
-	gm.seajs.use("app",function(app){
+	initAPP(function(app){
 		//启动加载
 		app.loadStart();
 		
