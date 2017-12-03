@@ -1,6 +1,13 @@
 # Flash-Template
 动画项目开发模板
 
+## 最近更新
+
+### 2017-12-02
+* 去掉Seajs引入方式 
+* annie添加on/off支持，可替代addEventListener/removeEventListener（太长了）
+* 将weui相关引用改为内部引用
+* 修改annie引擎图片加载方式，使得在当前全面使用HTTPS下，可以批量下载图片
 
 ## 使用步骤
 
@@ -65,7 +72,7 @@ gm.loadImg()
 
 ## 开发流程
 - clone 模板
-- 把fla放进 /source/flash 里
+- 把fla放进 /fla 里
 - 设置好fla属性，输出
 - 修改build.xml里的输出位置
 - 进入到相应目录，运行 ant
