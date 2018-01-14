@@ -106,10 +106,9 @@
             var val = url;
             var img = new Image();
             img.onload = function() {
-                if (img.complete == true) {
-                    checkLoad();
-                }
+                checkLoad();
             }
+            img.crossOrigin = 'Anonymous';
             img.src = val;
             if (isReturnImgObj) {
                 _imgOBJ[_i] = img;

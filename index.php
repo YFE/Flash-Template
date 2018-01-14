@@ -33,10 +33,6 @@
             $(".scroller").on("touchmove", function(e) {
                 e.stopPropagation();
 			});
-			
-			//简单适配全面屏
-			document.querySelector('body').style.backgroundColor = "#000";
-			document.querySelector('#app').style.height = window.innerHeight / (window.innerWidth / 640) >= 1040 ? 1040 / (640 / window.innerWidth) + "px" : "100%";
 		});
 	</script>
 	<script>
