@@ -33,11 +33,13 @@
             $(".scroller").on("touchmove", function(e) {
                 e.stopPropagation();
 			});
+
 		});
 	</script>
 	<script>
 		var	__cdnurl = "<?=$cdnUrl?>";
         var __mediaurl = "<?=$mediaUrl?>";
+		
 
 		// if wechat
 		var	__defaultWxData = {
