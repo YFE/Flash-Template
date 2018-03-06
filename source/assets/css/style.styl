@@ -23,3 +23,11 @@ vendor(prop, args)
     height: 100%
     overflow: hidden;
 }
+
+// 视频IOS下全屏插件样式
+.IIV::-webkit-media-controls-play-button,
+.IIV::-webkit-media-controls-start-playback-button {
+     opacity: 0;
+     pointer-events: none;
+     width: 5px;
+ }
