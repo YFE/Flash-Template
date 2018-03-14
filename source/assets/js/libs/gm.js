@@ -168,33 +168,30 @@
         page: function(_page) {
             try {
                 _hmt.push(['_trackPageview', '/page/' + _page]);
-            } catch (e) {
-
-            }
+            } catch (e) {}
             try {
-                ga('send', 'pageview', '/page/' + _page);
-            } catch (e) {
-
-            }
+                window.history.pushState(null,null,'/page/' + _page);
+                setTimeout(function(){
+                    MtaH5.pgv();
+                },16);
+            } catch (e) {}
         },
         event: function(_category, _event, _opt_label, _opt_value) {
             try {
                 _hmt.push(['_trackEvent', _category, _event, _opt_label, _opt_value]);
-            } catch (e) {
-
-            }
+            } catch (e) {}
             try {
-                ga('send', 'event', _category, _event, _opt_label, _opt_value);
-            } catch (e) {
-
-            }
+                var _data  = {};
+                _data[_event] = 'true';
+                MtaH5.clickStat(_category,_data);
+            } catch (e) {}
         },
-        link: function(_href, _name) {
+        link: function(_href, _category,_event) {
             setTimeout(function() {
                 window.location.href = _href;
             }, 300);
             try {
-                trackEvent("外链", _name);
+                gm.tracker.event(_category, _event);
             } catch (e) {}
         }
     }
@@ -265,11 +262,15 @@
             if (!gm.wxData.singleDesc) gm.wxData.singleDesc = gm.wxData.desc;
             wx.onMenuShareTimeline({
                 title: wxData.desc,
-                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=shareintimeline",
+                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "CKTAG=mtah5_share.wechat_moments",
                 imgUrl: wxData.imgUrl,
                 success: function() {
                     wxData.callback('timeline');
+                    
                     gm.tracker.page("share/timeline");
+                    try {
+                        MtaH5.clickShare('wechat_moments');
+                    } catch (error) {}
                 },
                 cancel: function() {
                     gm.tracker.event("share", 'timeline/cancel');
@@ -278,13 +279,17 @@
             wx.onMenuShareAppMessage({
                 title: wxData.title,
                 desc: wxData.singleDesc,
-                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=shareinappmessage",
+                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "CKTAG=mtah5_share.wechat_friend",
                 imgUrl: wxData.imgUrl,
                 type: '',
                 dataUrl: '',
                 success: function() {
                     wxData.callback('appmessage');
+
                     gm.tracker.page("share/appmessage");
+                    try {
+                        MtaH5.clickShare('wechat_friend');
+                    } catch (error) {}
                 },
                 cancel: function() {
                     gm.tracker.event("share", 'appmessage/cancel');
