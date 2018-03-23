@@ -170,9 +170,9 @@
                 _hmt.push(['_trackPageview', '/page/' + _page]);
             } catch (e) {}
             try {
-                window.history.pushState(null,null,'/page/' + _page);
+                window.history.pushState(null,null,'#/page/' + _page);
                 setTimeout(function(){
-                    MtaH5.pgv();
+                    MtaH5 && MtaH5.pgv();
                 },16);
             } catch (e) {}
         },
@@ -182,8 +182,10 @@
             } catch (e) {}
             try {
                 var _data  = {};
-                _data[_event] = 'true';
-                MtaH5.clickStat(_category,_data);
+                if( _event ){
+                    _data[_event] = 'true'
+                }
+                MtaH5 && MtaH5.clickStat(_category,_data);
             } catch (e) {}
         },
         link: function(_href, _category,_event) {
