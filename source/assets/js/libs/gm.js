@@ -170,10 +170,12 @@
                 _hmt.push(['_trackPageview', '/page/' + _page]);
             } catch (e) {}
             try {
-                window.history.pushState(null,null,'#/page/' + _page);
-                setTimeout(function(){
-                    MtaH5 && MtaH5.pgv();
-                },16);
+                if( typeof MtaH5 == 'object'){
+                    window.history.pushState(null,null,'#/page/' + _page);
+                    setTimeout(function(){
+                        MtaH5.pgv();
+                    },16);
+                }
             } catch (e) {}
         },
         event: function(_category, _event, _opt_label, _opt_value) {
@@ -182,10 +184,12 @@
             } catch (e) {}
             try {
                 var _data  = {};
-                if( _event ){
-                    _data[_event] = 'true'
+                if( typeof MtaH5 == 'object'){
+                    if( _event ){
+                        _data[_event] = 'true'
+                    }
+                    MtaH5.clickStat(_category,_data);
                 }
-                MtaH5 && MtaH5.clickStat(_category,_data);
             } catch (e) {}
         },
         link: function(_href, _category,_event) {

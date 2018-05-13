@@ -1,14 +1,14 @@
 ; (function (global) {
+	/*
+	* 添加事件管理器
+	* ems.on/one/off/trigger
+	*/
+	var ems = new gm.EM;
 	
 	var MyApp = function(){}
 	MyApp.prototype = {
 		loadStart : function(){
 			var self = this;
-			/*
-			* 添加事件管理器
-			* self.ems.on/one/off/trigger
-			*/
-			self.ems = new gm.EM;
 			/*
 			* 添加事件别名
 			*/
@@ -77,14 +77,14 @@
 			var self = this;
 
 			//事件触发
-			//self.ems.trigger('xx',function(a){})
+			//ems.trigger('xx',function(a){})
 
 			self.listener();
 		},
 		listener: function(){
 			var self = this;
 			//事件注册
-			//self.ems.on('xx',function(a){})
+			//ems.on('xx',function(a){})
 		}
 	};
 	var myapp = new MyApp;

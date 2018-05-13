@@ -40,7 +40,6 @@
 		var	__cdnurl = "<?=$cdnUrl?>";
         var __mediaurl = "<?=$mediaUrl?>";
 		
-
 		// if wechat
 		var	__defaultWxData = {
 			imgUrl : "<?=$wxData['imgUrl']?>",
@@ -53,9 +52,6 @@
 	</script>
 </head>
 <body>
-<div class="hide">
-	<img src="<?=$wxData['imgUrl']?>" alt="">
-</div>
 <div id="app" class="container">
 
 </div>
