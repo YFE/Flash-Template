@@ -12,15 +12,12 @@
 	<title><?=$websiteTitle?></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
 	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css">
-	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/weui.min.css">
+	<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
 	<style> .hide {display:none;} </style>
-   	<script src="<?=$cdnUrl?>assets/js/plugin/jweixin-1.2.0.js"></script>
-   	<script src="<?=$cdnUrl?>assets/js/plugin/weui.js"></script>
+   	<script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+   	<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
    	<script src="<?=$cdnUrl?>assets/js/libs/base.js"></script>
-	<!-- if is flashMaker -->
-	<script src="<?=$cdnUrl?>assets/js/plugin/annieCore.min.js"></script>
    	<script>
-	   
         $(function(){
             FastClick.attach(document.body);
             $(document).on("touchmove", function(e) {

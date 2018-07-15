@@ -129,10 +129,10 @@
 		}
 
 		layer.addEventListener('click', this.onClick, true);
-		layer.addEventListener('touchstart', this.onTouchStart, false);
-		layer.addEventListener('touchmove', this.onTouchMove, false);
-		layer.addEventListener('touchend', this.onTouchEnd, false);
-		layer.addEventListener('touchcancel', this.onTouchCancel, false);
+		layer.addEventListener('touchstart', this.onTouchStart, { passive: false });
+		layer.addEventListener('touchmove', this.onTouchMove, { passive: false });
+		layer.addEventListener('touchend', this.onTouchEnd, { passive: false });
+		layer.addEventListener('touchcancel', this.onTouchCancel, { passive: false });
 
 		// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
 		// which is how FastClick normally stops click events bubbling to callbacks registered on the FastClick
