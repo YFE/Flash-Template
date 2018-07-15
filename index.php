@@ -30,7 +30,6 @@
             $(".scroller").on("touchmove", function(e) {
                 e.stopPropagation();
 			});
-
 		});
 	</script>
 	<script>

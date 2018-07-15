@@ -20,10 +20,15 @@
 			*/
 			$(window).on('resize',function(){
 				var _selfBox = $("#app");
-				var _height = _selfBox.height() / (_selfBox.width() / 640);
+				var _selfwh = _.sortBy([_selfBox.width(),_selfBox.height()])
+				var _selfWidth = _selfwh[0]
+				var _selfHeight = _selfwh[1]
+				var _height = _selfHeight / (_selfWidth / 640);
+
 				_height = _height <= 1040 ? 1040 : _height;
 				self.suitHeight = -(1280 - _height > 0 ? 1280 - _height : 0)/2;
 				self.initHeight = _height;
+				
 			}).trigger('resize');
 
 			self.stage = new annie.Stage('app', 800, self.initHeight, 30, annie.StageScaleMode.FIXED_HEIGHT, 0);
