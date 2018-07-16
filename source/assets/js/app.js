@@ -15,32 +15,58 @@
 			gm.mt = annie.MouseEvent;
 			gm.et = annie.Event;
 			/*
-			* iPhoneX 尺寸
+			* 竖屏设计
+			* 全面屏 尺寸
 			* 设计尺寸 800 1280，安全范围 640 1040 居中
 			*/
+
 			$(window).on('resize',function(){
 				var _selfBox = $("#app");
-				var _selfwh = _.sortBy([_selfBox.width(),_selfBox.height()])
-				var _selfWidth = _selfwh[0]
-				var _selfHeight = _selfwh[1]
-				var _height = _selfHeight / (_selfWidth / 640);
+				var _selfwh = _.sortBy([_selfBox.width(),_selfBox.height()]);
+				var _screenHeight = _selfwh[1] / (_selfwh[0] / 640);
+				var _desHeight = _screenHeight <= 1040 ? 1040 : _screenHeight;
 
-				_height = _height <= 1040 ? 1040 : _height;
-				self.suitHeight = -(1280 - _height > 0 ? 1280 - _height : 0)/2;
-				self.initHeight = _height;
+				self.suitHeight = -(1280 - _desHeight > 0 ? 1280 - _desHeight : 0)/2;
+				self.initHeight = _desHeight;
 				
 			}).trigger('resize');
-
 			self.stage = new annie.Stage('app', 800, self.initHeight, 30, annie.StageScaleMode.FIXED_HEIGHT, 0);
 			self.stage.autoResize = true;
+
+			/*
+			* 横屏设计
+			* 全面屏 尺寸
+			* 设计尺寸 1280 800，安全范围 640 1040 居中
+			*/
+			// $(window).on('resize',function(){
+			// 	var _selfBox = $("#app");
+			// 	var _selfwh = _.sortBy([_selfBox.width(),_selfBox.height()]);
+			// 	var _screenHeight = _selfwh[1] / (_selfwh[0] / 640);
+			// 	var _desHeight = _screenHeight <= 1040 ? 1040 : _screenHeight;
+
+			// 	self.suitHeight = -(1280 - _desHeight > 0 ? 1280 - _desHeight : 0)/2 + (_screenHeight > 1280 ? (_screenHeight -1280)/2:0);
+			// 	self.initHeight = _desHeight;
+
+			// 	if( self.page['cloading'] ){
+			// 		self.stage.desWidth = self.initHeight;
+			// 		self.page['cloading'].x = self.suitHeight;
+			// 		self.stage.resize();
+			// 	}
+				
+			// }).trigger('resize');
+			// self.stage = new annie.Stage('app', self.initHeight, 800, 30, annie.StageScaleMode.FIXED_WIDTH, 0);
+
 			self.stage.autoSteering = true;
 			self.stage.addEventListener(annie.Event.INIT_TO_STAGE, function (e) {
 				Flash2x.loadScene(['cloading'], function (per) {
 					self.loadProcess(per);
 				}, function (result) {
 					self.page['cloading'] = gm.getFlaClass('cloading');
-					// iPhoneX 尺寸适配
+					// 全面屏 竖屏 尺寸适配
 					self.page['cloading'].y = self.suitHeight;
+					
+					// 全面屏 横屏 尺寸适配
+					// self.page['cloading'].x = self.suitHeight;
 
 					//font handlee
 					self.page['cloading'].loadBox.loadText.loadNum.font = 'handlee';
