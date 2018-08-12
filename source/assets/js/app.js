@@ -50,8 +50,8 @@
 			// self.stage = new annie.Stage('app', self.initHeight, 800, 30, annie.StageScaleMode.FIXED_WIDTH, 0);
 
 			self.stage.autoSteering = true;
-			self.stage.addEventListener(annie.Event.ON_INIT_STAGE, function (e) {
-				annie.loadScene(['cloading'], function (per) {
+			self.stage.addEventListener(annie.Event.INIT_TO_STAGE, function (e) {
+				Flash2x.loadScene(['cloading'], function (per) {
 					self.loadProcess(per);
 				}, function (result) {
 					self.page['cloading'] = gm.getFlaClass('cloading');
@@ -75,7 +75,7 @@
 					self.stage.addChild(self.page['cloading']);
 
 					// 加载其他
-					annie.loadScene(['cmain'], function (per) {
+					Flash2x.loadScene(['cmain'], function (per) {
 						self.loadProcess(per);
 					}, function (result) {
 						if (result.sceneId == result.sceneTotal) {

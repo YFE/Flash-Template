@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
 	<style> .hide {display:none;} </style>
    	<script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
-   	<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.4/weui.min.js"></script>
+   	<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
    	<script src="<?=$cdnUrl?>assets/js/libs/base.js"></script>
    	<script>
         $(function(){
